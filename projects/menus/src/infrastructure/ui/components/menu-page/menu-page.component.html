@@ -1,0 +1,12 @@
+<div class="menu-page">
+  <div class="menu-page__create-btn">
+    <lib-card-btn
+      [action]="'create'"
+      [entityName]="'Nuevo Menú'"
+      (click)="onCreateMenu()"
+    ></lib-card-btn>
+  </div>
+  <div class="menu-page__list">
+    <lib-menu-card *ngFor="let menu of menus" [menu]="menu"></lib-menu-card>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="customer-page">
+  <lib-card-btn
+    [action]="'create'"
+    [entityName]="'Nuevo Usuario'"
+    (click)="onCreateUser()"
+  ></lib-card-btn>
+  <div class="customer-page__list">
+    <lib-customer-card
+      *ngFor="let customer of customers; trackBy: trackByFn"
+      [customer]="customer"
+    ></lib-customer-card>
+  </div>
+</div>

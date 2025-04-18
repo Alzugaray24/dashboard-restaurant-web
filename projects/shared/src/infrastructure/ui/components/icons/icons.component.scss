@@ -1,0 +1,37 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins";
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+
+  // Tamaños predefinidos
+  &--small {
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &--medium {
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &--large {
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  // Asegurar que los iconos estén alineados correctamente
+  svg {
+    vertical-align: middle;
+    display: block;
+  }
+}

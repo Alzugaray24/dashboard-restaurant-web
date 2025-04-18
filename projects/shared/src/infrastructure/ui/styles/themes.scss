@@ -1,0 +1,145 @@
+@use "variables" as *;
+
+// Define theme variables
+:root {
+  // Light theme (default)
+  --primary-color: #{$primary-color};
+  --primary-light: #{$primary-light};
+  --primary-dark: #{$primary-dark};
+  --secondary-color: #{$secondary-color};
+  --secondary-light: #{$secondary-light};
+  --secondary-dark: #{$secondary-dark};
+  --warning-color: #{$warning-color};
+  --danger-color: #{$danger-color};
+  --info-color: #{$info-color};
+
+  // Text colors
+  --text-color-primary: #{$text-color-primary};
+  --text-color-secondary: #{$text-color-secondary};
+  --text-color-tertiary: #{$text-color-tertiary};
+
+  // Background colors
+  --bg-color: #{$bg-color-primary};
+  --bg-color-secondary: #{$bg-color-secondary};
+  --bg-color-tertiary: #{$bg-color-tertiary};
+
+  // Border colors
+  --border-color: #{$border-color};
+  --border-color-light: #{$border-color-light};
+
+  // Shadows
+  --shadow-sm: #{$shadow-sm};
+  --shadow-md: #{$shadow-md};
+  --shadow-lg: #{$shadow-lg};
+  --shadow-xl: #{$shadow-xl};
+
+  // Additional dashboard colors
+  --success-light: rgba(#{$secondary-color}, 0.1);
+  --warning-light: rgba(#{$warning-color}, 0.1);
+  --danger-light: rgba(#{$danger-color}, 0.1);
+  --info-light: rgba(#{$info-color}, 0.1);
+
+  // Hover effects
+  --hover-bg-color: #{$bg-color-tertiary};
+
+  // Chart colors
+  --chart-color-1: #{$primary-color};
+  --chart-color-2: #{$secondary-color};
+  --chart-color-3: #{$warning-color};
+  --chart-color-4: #{$danger-color};
+  --chart-color-5: #{$info-color};
+  --chart-color-6: #8b5cf6; // Purple
+  --chart-color-7: #ec4899; // Pink
+  --chart-color-8: #14b8a6; // Teal
+}
+
+// Dark theme
+.theme-dark {
+  // Text colors
+  --text-color-primary: #f9fafb;
+  --text-color-secondary: #e5e7eb;
+  --text-color-tertiary: #9ca3af;
+
+  // Background colors
+  --bg-color: #1f2937;
+  --bg-color-secondary: #111827;
+  --bg-color-tertiary: #374151;
+
+  // Border colors
+  --border-color: #4b5563;
+  --border-color-light: #374151;
+
+  // Shadows with darker tints
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4),
+    0 2px 4px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4),
+    0 4px 6px -2px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4),
+    0 10px 10px -5px rgba(0, 0, 0, 0.1);
+
+  // Colors with adjusted vibrancy for dark mode
+  --primary-color: #60a5fa;
+  --primary-light: #93c5fd;
+  --primary-dark: #2563eb;
+
+  --secondary-color: #34d399;
+  --secondary-light: #6ee7b7;
+  --secondary-dark: #059669;
+
+  --warning-color: #fbbf24;
+  --danger-color: #f87171;
+  --info-color: #818cf8;
+
+  // Additional dashboard colors for dark mode
+  --success-light: rgba(52, 211, 153, 0.2);
+  --warning-light: rgba(251, 191, 36, 0.2);
+  --danger-light: rgba(248, 113, 113, 0.2);
+  --info-light: rgba(129, 140, 248, 0.2);
+
+  // Hover effects for dark mode
+  --hover-bg-color: #374151;
+}
+
+// High contrast theme for accessibility
+.theme-high-contrast {
+  // Text colors with maximum contrast
+  --text-color-primary: #ffffff;
+  --text-color-secondary: #f0f0f0;
+  --text-color-tertiary: #c0c0c0;
+
+  // Background colors
+  --bg-color: #000000;
+  --bg-color-secondary: #121212;
+  --bg-color-tertiary: #1e1e1e;
+
+  // Border colors
+  --border-color: #ffffff;
+  --border-color-light: #a0a0a0;
+
+  // High contrast colors
+  --primary-color: #ffff00; // Yellow
+  --primary-light: #ffffaa;
+  --primary-dark: #aaaa00;
+
+  --secondary-color: #00ffff; // Cyan
+  --secondary-light: #aaffff;
+  --secondary-dark: #00aaaa;
+
+  --warning-color: #ff8000; // Orange
+  --danger-color: #ff0000; // Bright red
+  --info-color: #0080ff; // Bright blue
+
+  // Increased outline focus for better visibility
+  *:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 3px;
+  }
+}
+
+// Auto-switch to dark mode based on system preference
+@media (prefers-color-scheme: dark) {
+  body:not(.theme-light):not(.theme-high-contrast) {
+    @extend .theme-dark;
+  }
+}

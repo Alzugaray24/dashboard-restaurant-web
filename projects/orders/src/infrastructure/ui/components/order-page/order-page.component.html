@@ -1,0 +1,15 @@
+<div class="order-page">
+  <div class="order-page__create-btn">
+    <lib-card-btn
+      [action]="'create'"
+      [entityName]="'Nueva Orden'"
+      (click)="onCreateOrder()"
+    ></lib-card-btn>
+  </div>
+  <div class="order-page__list">
+    <lib-order-card
+      *ngFor="let order of orders"
+      [order]="order"
+    ></lib-order-card>
+  </div>
+</div>

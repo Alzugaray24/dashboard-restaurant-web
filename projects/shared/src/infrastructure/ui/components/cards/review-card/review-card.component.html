@@ -1,0 +1,46 @@
+<div class="review-card">
+  <div class="review-card__header">
+    <div class="review-card__reviewer">
+      <div class="review-card__avatar">
+        <img
+          *ngIf="reviewerAvatar"
+          [src]="reviewerAvatar"
+          [alt]="reviewerName"
+          class="review-card__avatar-img"
+        />
+        <div *ngIf="!reviewerAvatar" class="review-card__avatar-placeholder">
+          {{ reviewerName.charAt(0) }}
+        </div>
+      </div>
+      <div class="review-card__reviewer-info">
+        <h4 class="review-card__reviewer-name">{{ reviewerName }}</h4>
+        <p class="review-card__review-date">{{ reviewDate }}</p>
+      </div>
+    </div>
+
+    <div *ngIf="foodImage" class="review-card__food-image">
+      <img [src]="foodImage" alt="Food image" class="review-card__food-img" />
+    </div>
+  </div>
+
+  <div class="review-card__content">
+    <p class="review-card__text">{{ reviewText }}</p>
+  </div>
+
+  <div class="review-card__footer">
+    <div class="review-card__rating">
+      <div
+        *ngFor="let star of ratingStars"
+        class="review-card__star review-card__star--filled"
+      >
+        <lib-icon name="star" color="#FBBF24"></lib-icon>
+      </div>
+      <div *ngFor="let star of emptyStars" class="review-card__star">
+        <lib-icon name="star" color="#E5E7EB"></lib-icon>
+      </div>
+      <span class="review-card__rating-value">{{
+        reviewRating.toFixed(1)
+      }}</span>
+    </div>
+  </div>
+</div>

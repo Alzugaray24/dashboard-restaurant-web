@@ -1,0 +1,171 @@
+<div class="bar-chart">
+  <h3 *ngIf="title" class="bar-chart__title">{{ title }}</h3>
+
+  <div class="bar-chart__container">
+    <svg
+      [attr.viewBox]="viewBox"
+      [attr.width]="width"
+      [attr.height]="height"
+      class="bar-chart__svg"
+    >
+      <!-- Grilla horizontal para gráficos verticales -->
+      <g *ngIf="showGrid && vertical" class="bar-chart__grid-lines">
+        <line
+          *ngFor="let line of gridLines"
+          [attr.x1]="padding"
+          [attr.y1]="height - padding - (line / maxValue) * chartHeight"
+          [attr.x2]="width - padding"
+          [attr.y2]="height - padding - (line / maxValue) * chartHeight"
+          class="bar-chart__grid-line"
+        />
+      </g>
+
+      <!-- Grilla vertical para gráficos horizontales -->
+      <g *ngIf="showGrid && !vertical" class="bar-chart__grid-lines">
+        <line
+          *ngFor="let line of gridLines"
+          [attr.x1]="padding + (line / maxValue) * chartWidth"
+          [attr.y1]="padding"
+          [attr.x2]="padding + (line / maxValue) * chartWidth"
+          [attr.y2]="height - padding"
+          class="bar-chart__grid-line"
+        />
+      </g>
+
+      <!-- Líneas de eje -->
+      <line
+        [attr.x1]="padding"
+        [attr.y1]="height - padding"
+        [attr.x2]="vertical ? width - padding : padding"
+        [attr.y2]="vertical ? height - padding : padding"
+        class="bar-chart__axis-line"
+      />
+
+      <line
+        [attr.x1]="padding"
+        [attr.y1]="height - padding"
+        [attr.x2]="padding"
+        [attr.y2]="padding"
+        class="bar-chart__axis-line"
+      />
+
+      <!-- Barras para gráficos de series o simples -->
+      <g *ngFor="let group of barGroups" class="bar-chart__group">
+        <g *ngFor="let bar of group.bars" class="bar-chart__bar-container">
+          <rect
+            [attr.x]="bar.x"
+            [attr.y]="bar.y"
+            [attr.width]="bar.width"
+            [attr.height]="bar.height"
+            [attr.fill]="bar.color"
+            class="bar-chart__bar"
+            (mouseenter)="$event.target.classList.add('bar-chart__bar--hover')"
+            (mouseleave)="
+              $event.target.classList.remove('bar-chart__bar--hover')
+            "
+          />
+
+          <!-- Etiqueta de valor para cada barra -->
+          <text
+            *ngIf="vertical"
+            [attr.x]="bar.x + bar.width / 2"
+            [attr.y]="bar.y - 5"
+            class="bar-chart__bar-value"
+            text-anchor="middle"
+          >
+            {{ formatValue(bar.value) }}
+          </text>
+
+          <text
+            *ngIf="!vertical"
+            [attr.x]="bar.x + bar.width + 5"
+            [attr.y]="bar.y + bar.height / 2"
+            class="bar-chart__bar-value"
+            dominant-baseline="middle"
+          >
+            {{ formatValue(bar.value) }}
+          </text>
+        </g>
+      </g>
+
+      <!-- Etiquetas del eje X para gráficos verticales -->
+      <g
+        *ngIf="showLabels && vertical && barGroups.length > 0"
+        class="bar-chart__labels bar-chart__x-labels"
+      >
+        <text
+          *ngFor="let group of barGroups"
+          [attr.x]="
+            group.bars.length > 0
+              ? group.bars[0].x + (group.bars[0].width * group.bars.length) / 2
+              : 0
+          "
+          [attr.y]="height - padding + 20"
+          class="bar-chart__label"
+          text-anchor="middle"
+        >
+          {{ group.name }}
+        </text>
+      </g>
+
+      <!-- Etiquetas del eje Y para gráficos horizontales -->
+      <g
+        *ngIf="showLabels && !vertical && barGroups.length > 0"
+        class="bar-chart__labels bar-chart__y-labels"
+      >
+        <text
+          *ngFor="let group of barGroups; let i = index"
+          [attr.x]="padding - 10"
+          [attr.y]="
+            group.bars.length > 0
+              ? group.bars[0].y + group.bars[0].height / 2
+              : 0
+          "
+          class="bar-chart__label"
+          text-anchor="end"
+          dominant-baseline="middle"
+        >
+          {{ group.name }}
+        </text>
+      </g>
+
+      <!-- Etiquetas de valores en eje Y para gráficos verticales -->
+      <g *ngIf="showLabels && vertical" class="bar-chart__value-labels">
+        <text
+          *ngFor="let line of gridLines"
+          [attr.x]="padding - 10"
+          [attr.y]="height - padding - (line / maxValue) * chartHeight"
+          class="bar-chart__value-label"
+          text-anchor="end"
+          dominant-baseline="middle"
+        >
+          {{ formatValue(line) }}
+        </text>
+      </g>
+
+      <!-- Etiquetas de valores en eje X para gráficos horizontales -->
+      <g *ngIf="showLabels && !vertical" class="bar-chart__value-labels">
+        <text
+          *ngFor="let line of gridLines"
+          [attr.x]="padding + (line / maxValue) * chartWidth"
+          [attr.y]="height - padding + 20"
+          class="bar-chart__value-label"
+          text-anchor="middle"
+        >
+          {{ formatValue(line) }}
+        </text>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Leyenda para gráficos de series múltiples -->
+  <div *ngIf="series && series.length > 0" class="bar-chart__legend">
+    <div *ngFor="let serie of series" class="bar-chart__legend-item">
+      <span
+        class="bar-chart__legend-color"
+        [style.background-color]="serie.color"
+      ></span>
+      <span class="bar-chart__legend-label">{{ serie.name }}</span>
+    </div>
+  </div>
+</div>

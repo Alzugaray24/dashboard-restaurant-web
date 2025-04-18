@@ -1,0 +1,27 @@
+<div class="menu-card">
+  <h3 class="menu-card__name">{{ menu.name }}</h3>
+  <ul class="menu-card__dishes">
+    <li *ngFor="let dish of menu.dishes">
+      {{ dish.name }} - {{ dish.price | currency }}
+    </li>
+  </ul>
+  <div class="menu-card__buttons">
+    <lib-card-btn
+      [action]="'update'"
+      [entityName]="'Menú'"
+      (click)="onUpdate()"
+    ></lib-card-btn>
+    <lib-card-btn
+      [action]="'delete'"
+      [entityName]="'Menú'"
+      (click)="onDelete()"
+    ></lib-card-btn>
+  </div>
+  <lib-modal
+    *ngIf="showModal"
+    [text]="'¿Estás seguro de que deseas eliminar este menú?'"
+    [actionText]="'Eliminar'"
+    (close)="onCloseModal()"
+    (action)="onConfirmDelete()"
+  ></lib-modal>
+</div>

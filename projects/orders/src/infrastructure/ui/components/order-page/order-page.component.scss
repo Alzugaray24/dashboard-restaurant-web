@@ -1,0 +1,22 @@
+@use "../../../../../../shared/src/infrastructure/ui/styles/variables" as *;
+@use "../../../../../../shared/src/infrastructure/ui/styles/mixins";
+
+.order-page {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-large;
+  padding: $spacing-large;
+  background-color: $background-color;
+
+  &__create-btn {
+    display: flex;
+    justify-content: center;
+    margin-bottom: $spacing-large;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: $spacing-large;
+  }
+}

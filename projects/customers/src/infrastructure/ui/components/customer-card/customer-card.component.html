@@ -1,0 +1,24 @@
+<div class="customer-card">
+  <h3 class="customer-card__name">{{ customer.name }}</h3>
+  <p class="customer-card__id">ID: {{ customer.id }}</p>
+  <p class="customer-card__type">{{ customer.type }}</p>
+  <div class="customer-card__buttons">
+    <lib-card-btn
+      [action]="'update'"
+      [entityName]="'Usuario'"
+      (click)="onUpdate()"
+    ></lib-card-btn>
+    <lib-card-btn
+      [action]="'delete'"
+      [entityName]="'Usuario'"
+      (click)="onDelete()"
+    ></lib-card-btn>
+  </div>
+  <lib-modal
+    *ngIf="showModal"
+    [text]="'¿Estás seguro de que deseas eliminar este usuario?'"
+    [actionText]="'Eliminar'"
+    (close)="onCloseModal()"
+    (action)="onConfirmDelete()"
+  ></lib-modal>
+</div>

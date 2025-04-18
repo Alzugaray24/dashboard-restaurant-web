@@ -1,0 +1,31 @@
+<form (ngSubmit)="onSubmit()" class="menu-form">
+  <div class="form-group">
+    <label for="name" class="form-group__label">Nombre del Menú</label>
+    <input
+      id="name"
+      [(ngModel)]="menuName"
+      name="name"
+      required
+      class="form-group__input"
+    />
+  </div>
+  <div class="form-group">
+    <label for="dishes" class="form-group__label">Platos del Menú</label>
+    <select
+      id="dishes"
+      [(ngModel)]="menuDishIds"
+      name="dishes"
+      multiple
+      class="form-group__input"
+    >
+      <option *ngFor="let dish of availableDishes$ | async" [ngValue]="dish.id">
+        {{ dish.name }}
+      </option>
+    </select>
+  </div>
+  <lib-card-btn
+    [action]="'create'"
+    [entityName]="'Menú'"
+    type="submit"
+  ></lib-card-btn>
+</form>

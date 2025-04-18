@@ -1,0 +1,81 @@
+<div class="pie-chart">
+  <h3 *ngIf="title" class="pie-chart__title">{{ title }}</h3>
+
+  <div
+    class="pie-chart__svg-container"
+    [style.width.px]="size"
+    [style.height.px]="size"
+  >
+    <svg
+      [attr.width]="size"
+      [attr.height]="size"
+      viewBox="0 0 {{ size }} {{ size }}"
+    >
+      <!-- Segmentos del chart -->
+      <g *ngFor="let segment of chartData; let i = index">
+        <path
+          [attr.d]="segment.path"
+          [attr.fill]="segment.color"
+          [attr.transform]="segment.transform"
+          class="pie-chart__segment"
+        ></path>
+
+        <!-- Etiquetas centrales para los segmentos en gráficos de dona -->
+        <text
+          *ngIf="donut && showLabels && segment.labelPosition"
+          [attr.x]="segment.labelPosition?.x"
+          [attr.y]="segment.labelPosition?.y"
+          class="pie-chart__label"
+          text-anchor="middle"
+          alignment-baseline="middle"
+        >
+          {{ segment.label }}
+          <tspan
+            *ngIf="showValue"
+            x="{{ segment.labelPosition?.x }}"
+            dy="1.2em"
+            class="pie-chart__value"
+          >
+            {{ segment.percentage }}
+          </tspan>
+        </text>
+      </g>
+
+      <!-- Círculo central para gráficos tipo dona -->
+      <circle
+        *ngIf="donut"
+        [attr.cx]="center"
+        [attr.cy]="center"
+        [attr.r]="center - donutWidth"
+        fill="white"
+        class="pie-chart__donut-hole"
+      ></circle>
+
+      <!-- Etiqueta en el centro del gráfico (para donas) -->
+      <text
+        *ngIf="donut && centerLabel"
+        [attr.x]="center"
+        [attr.y]="center"
+        text-anchor="middle"
+        alignment-baseline="middle"
+        class="pie-chart__center-label"
+      >
+        {{ centerLabel }}
+      </text>
+    </svg>
+  </div>
+
+  <!-- Leyenda debajo del gráfico (para gráficos que no sean de dona) -->
+  <div *ngIf="!donut && showLabels" class="pie-chart__legend">
+    <div *ngFor="let segment of chartData" class="pie-chart__legend-item">
+      <div
+        class="pie-chart__legend-color"
+        [style.background-color]="segment.color"
+      ></div>
+      <div class="pie-chart__legend-label">{{ segment.label }}</div>
+      <div *ngIf="showValue" class="pie-chart__legend-value">
+        {{ segment.percentage }}
+      </div>
+    </div>
+  </div>
+</div>

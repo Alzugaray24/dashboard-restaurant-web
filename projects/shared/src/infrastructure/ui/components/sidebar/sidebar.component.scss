@@ -1,0 +1,160 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins";
+@use "sass:color";
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  padding: $spacing-large;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+
+  // Estructura del Sidebar
+  &__header {
+    margin-bottom: $spacing-large * 1.5;
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+    color: $text-dark;
+  }
+
+  &__subtitle {
+    font-size: 0.8rem;
+    color: $text-color;
+    margin: 0;
+    opacity: 0.7;
+  }
+
+  &__nav {
+    flex: 1;
+    margin-bottom: $spacing-large;
+  }
+
+  &__nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-medium;
+  }
+
+  &__nav-item {
+    width: 100%;
+  }
+
+  &__nav-link {
+    display: flex;
+    align-items: center;
+    gap: $spacing-small;
+    padding: $spacing-small $spacing-medium;
+    border-radius: 8px;
+    text-decoration: none;
+    color: $text-color;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: color.adjust($background-color, $lightness: -2%);
+    }
+
+    &--active {
+      background-color: color.adjust(#10b981, $alpha: -0.9);
+      color: #10b981;
+      font-weight: 500;
+    }
+  }
+
+  &__nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__nav-label {
+    font-size: 0.9rem;
+  }
+
+  // Notificación
+  &__notification {
+    background-color: color.adjust(#10b981, $alpha: -0.9);
+    border-radius: 8px;
+    padding: $spacing-medium;
+    margin-bottom: $spacing-large;
+  }
+
+  &__notification-content {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-small;
+    margin-bottom: $spacing-small;
+  }
+
+  &__notification-icon {
+    background-color: white;
+    border-radius: 8px;
+    padding: $spacing-small;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__notification-text {
+    flex: 1;
+  }
+
+  &__notification-title,
+  &__notification-subtitle {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #10b981;
+  }
+
+  &__notification-subtitle {
+    font-weight: 600;
+  }
+
+  &__notification-button {
+    width: 100%;
+    background-color: white;
+    color: #10b981;
+    border: 1px solid color.adjust(#10b981, $lightness: 30%);
+    border-radius: 8px;
+    padding: $spacing-small 0;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: color.adjust(white, $lightness: -2%);
+    }
+  }
+
+  // Footer
+  &__footer {
+    font-size: 0.75rem;
+    color: $text-color;
+    opacity: 0.7;
+  }
+
+  &__footer-content {
+    line-height: 1.5;
+  }
+}

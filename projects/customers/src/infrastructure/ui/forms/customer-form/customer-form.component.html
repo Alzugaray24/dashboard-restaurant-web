@@ -1,0 +1,17 @@
+<form (ngSubmit)="onSubmit()" class="customer-form">
+  <div class="form-group">
+    <label for="name" class="form-group__label">Nombre del Usuario</label>
+    <input
+      id="name"
+      [(ngModel)]="customerName"
+      name="name"
+      required
+      class="form-group__input"
+    />
+  </div>
+  <lib-card-btn
+    [action]="'create'"
+    [entityName]="'Usuario'"
+    type="submit"
+  ></lib-card-btn>
+</form>

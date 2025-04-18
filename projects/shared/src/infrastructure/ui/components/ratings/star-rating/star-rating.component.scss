@@ -1,0 +1,159 @@
+@import "../../../../styles/variables";
+@import "../../../../styles/mixins";
+
+:root {
+  --star-fill-color: var(--warning-color, #ffb400);
+  --star-empty-color: var(--border-color-light, #d1d5db);
+}
+
+.star-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  &__stars {
+    display: flex;
+    align-items: center;
+  }
+
+  &__star {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    color: var(--star-empty-color);
+
+    // Star sizes
+    &--small {
+      width: 16px;
+      height: 16px;
+    }
+
+    &--medium {
+      width: 20px;
+      height: 20px;
+    }
+
+    &--large {
+      width: 24px;
+      height: 24px;
+    }
+
+    // Star states
+    &--full {
+      color: var(--star-fill-color);
+    }
+
+    &--half {
+      position: relative;
+      color: var(--star-empty-color);
+
+      .star-rating__icon--half {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+        color: var(--star-fill-color);
+        z-index: 1;
+      }
+    }
+
+    &--partial {
+      position: relative;
+      color: var(--star-empty-color);
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: var(--partial-fill, 50%);
+        height: 100%;
+        background-color: var(--star-fill-color);
+        clip-path: url(#star-mask);
+        z-index: 1;
+      }
+    }
+
+    &--empty {
+      color: var(--star-empty-color);
+    }
+
+    // Hover effects
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__icon {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+
+    // For half stars
+    &--half {
+      clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+    }
+  }
+
+  &__value {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-color-primary);
+    min-width: 1.875rem;
+  }
+
+  // Read-only state
+  &--readonly {
+    .star-rating__star {
+      cursor: default;
+      pointer-events: none;
+
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+
+  // Size variations
+  &--small {
+    .star-rating__value {
+      font-size: 0.75rem;
+    }
+  }
+
+  &--large {
+    .star-rating__value {
+      font-size: 1rem;
+    }
+  }
+
+  // Animations
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  &__star--full {
+    animation: pulse 0.3s ease-in-out;
+  }
+}
+
+// SVG mask for partial stars (for browsers that support clip-path with SVG)
+svg:not(:root) {
+  display: none;
+}
+
+.star-mask {
+  position: absolute;
+  width: 0;
+  height: 0;
+}

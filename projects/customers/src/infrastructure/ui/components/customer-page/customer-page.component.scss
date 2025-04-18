@@ -1,0 +1,30 @@
+@use "../../../../../../shared/src/infrastructure/ui/styles/variables" as *;
+@use "../../../../../../shared/src/infrastructure/ui/styles/mixins";
+
+.customer-page {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: $spacing-large;
+  padding: $spacing-large;
+  background-color: $background-color;
+
+  &__create-btn {
+    @include mixins.button($button-create, $text-light);
+    align-self: flex-start;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-medium;
+
+    @include mixins.media(tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mixins.media(mobile) {
+      grid-template-columns: 1fr;
+    }
+  }
+}

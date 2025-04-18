@@ -1,0 +1,89 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins";
+
+.line-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: $spacing-small;
+    color: $text-dark;
+  }
+
+  &__svg-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+  }
+
+  &__grid-line {
+    stroke: #e5e7eb;
+    stroke-width: 1;
+    stroke-dasharray: 3, 3;
+
+    &--x {
+      stroke-opacity: 0.5;
+    }
+
+    &--y {
+      stroke-opacity: 0.7;
+    }
+  }
+
+  &__line {
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  &__point {
+    fill: white;
+    stroke-width: 2;
+    cursor: pointer;
+    transition: r 0.2s ease, stroke-width 0.2s ease;
+
+    &:hover {
+      r: 6;
+      stroke-width: 3;
+    }
+  }
+
+  &__axis-label {
+    font-size: 0.7rem;
+    fill: $text-color;
+    opacity: 0.8;
+  }
+
+  &__legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: $spacing-medium;
+    gap: $spacing-small;
+  }
+
+  &__legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: $spacing-medium;
+  }
+
+  &__legend-color {
+    width: 12px;
+    height: 3px;
+    border-radius: 2px;
+    margin-right: $spacing-small;
+  }
+
+  &__legend-label {
+    font-size: 0.75rem;
+    color: $text-dark;
+  }
+}

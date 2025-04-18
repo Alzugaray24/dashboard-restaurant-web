@@ -1,0 +1,17 @@
+<form (ngSubmit)="onSubmit()" class="update-form">
+  <div class="form-group">
+    <label for="name" class="form-group__label">Nuevo Nombre del Usuario</label>
+    <input
+      id="name"
+      [(ngModel)]="customer.name"
+      name="name"
+      required
+      class="form-group__input"
+    />
+  </div>
+  <lib-card-btn
+    [action]="'update'"
+    [entityName]="'Usuario'"
+    type="submit"
+  ></lib-card-btn>
+</form>

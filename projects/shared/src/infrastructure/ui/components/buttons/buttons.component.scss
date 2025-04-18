@@ -1,0 +1,146 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins";
+@use "sass:color";
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-small;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: $font-secondary;
+
+  // Tipos de botones
+  &--primary {
+    background-color: $primary-color;
+    color: $text-light;
+    padding: $spacing-small $spacing-medium;
+
+    &:hover {
+      background-color: color.adjust($primary-color, $lightness: -10%);
+      transform: translateY(-2px);
+    }
+  }
+
+  &--outline {
+    background-color: transparent;
+    color: $primary-color;
+    border: 1px solid $primary-color;
+    padding: $spacing-small $spacing-medium;
+
+    &:hover {
+      background-color: color.adjust($primary-color, $alpha: -0.9);
+      transform: translateY(-2px);
+    }
+  }
+
+  &--icon {
+    background-color: transparent;
+    color: $text-dark;
+    padding: $spacing-small;
+
+    &:hover {
+      background-color: color.adjust($background-color, $lightness: -5%);
+    }
+  }
+
+  &--circle {
+    border-radius: 50%;
+    padding: $spacing-small;
+    width: 36px;
+    height: 36px;
+    background-color: $background-color;
+    color: $text-dark;
+
+    &:hover {
+      background-color: color.adjust($background-color, $lightness: -5%);
+      @include mixins.box-shadow(0px, 2px, 4px, rgba(0, 0, 0, 0.1));
+    }
+  }
+
+  // Variantes de color
+  &--green {
+    background-color: #10b981; // Color verde del diseño
+    color: white;
+
+    &:hover {
+      background-color: color.adjust(#10b981, $lightness: -10%);
+    }
+
+    &.button--outline {
+      background-color: transparent;
+      color: #10b981;
+      border-color: #10b981;
+
+      &:hover {
+        background-color: color.adjust(#10b981, $alpha: -0.9);
+      }
+    }
+  }
+
+  &--white {
+    background-color: white;
+    color: $text-dark;
+    border: 1px solid $card-border;
+
+    &:hover {
+      background-color: color.adjust(white, $lightness: -5%);
+    }
+  }
+
+  // Tamaños
+  &--small {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+
+    &.button--circle {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  &--medium {
+    font-size: 0.875rem;
+
+    &.button--circle {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  &--large {
+    font-size: 1rem;
+    padding: $spacing-medium $spacing-large;
+
+    &.button--circle {
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+  // Modificadores adicionales
+  &--full-width {
+    width: 100%;
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  // Elementos internos
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__text {
+    line-height: 1;
+  }
+}

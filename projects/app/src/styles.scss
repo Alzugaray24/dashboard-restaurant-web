@@ -1,0 +1,109 @@
+// Importar variables y mixins
+@use "../../shared/src/infrastructure/ui/styles/variables.scss" as *;
+@use "../../shared/src/infrastructure/ui/styles/mixins.scss" as *;
+
+// Estilos globales
+body {
+  background-color: $background-color;
+  color: $text-color;
+  font-family: $font-primary;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-secondary;
+  color: $primary-color;
+  margin: $spacing-medium 0;
+}
+
+p {
+  margin: $spacing-small 0;
+  font-size: $font-size-base;
+}
+
+a {
+  color: $accent-color;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+button {
+  @include button($button-primary, $text-light);
+
+  &:hover {
+    background-color: $secondary-color;
+  }
+
+  &:disabled {
+    background-color: $button-disabled;
+  }
+}
+
+// Clases utilitarias
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-medium;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-small {
+  margin-top: $spacing-small;
+}
+
+.mt-medium {
+  margin-top: $spacing-medium;
+}
+
+.mt-large {
+  margin-top: $spacing-large;
+}
+
+.mb-small {
+  margin-bottom: $spacing-small;
+}
+
+.mb-medium {
+  margin-bottom: $spacing-medium;
+}
+
+.mb-large {
+  margin-bottom: $spacing-large;
+}
+
+// Estilos responsivos
+@include media($breakpoint-mobile) {
+  body {
+    font-size: 14px;
+  }
+
+  .container {
+    padding: 0 $spacing-small;
+  }
+}
+
+@include media($breakpoint-tablet) {
+  body {
+    font-size: 15px;
+  }
+}
+
+@include media($breakpoint-desktop) {
+  body {
+    font-size: 16px;
+  }
+}

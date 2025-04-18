@@ -1,0 +1,31 @@
+<div class="order-card">
+  <h3 class="order-card__title">Orden #{{ order.id }}</h3>
+  <p class="order-card__customer">
+    Cliente: {{ order.customer.name }} (ID: {{ order.customer.id }})
+  </p>
+  <ul class="order-card__dishes">
+    <li *ngFor="let dish of order.dishes">
+      {{ dish.name }} - {{ dish.price | currency }}
+    </li>
+  </ul>
+  <p class="order-card__total">Total: {{ order.total | currency }}</p>
+  <div class="order-card__buttons">
+    <lib-card-btn
+      [action]="'update'"
+      [entityName]="'Orden'"
+      (click)="onUpdate()"
+    ></lib-card-btn>
+    <lib-card-btn
+      [action]="'delete'"
+      [entityName]="'Orden'"
+      (click)="onDelete()"
+    ></lib-card-btn>
+  </div>
+  <lib-modal
+    *ngIf="showModal"
+    [text]="'¿Estás seguro de que deseas eliminar esta orden?'"
+    [actionText]="'Eliminar'"
+    (close)="onCloseModal()"
+    (action)="onConfirmDelete()"
+  ></lib-modal>
+</div>

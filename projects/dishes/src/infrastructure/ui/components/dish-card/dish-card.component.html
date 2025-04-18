@@ -1,0 +1,23 @@
+<div class="dish-card">
+  <h3 class="dish-card__name">{{ dish.name }}</h3>
+  <p class="dish-card__price">{{ dish.price | currency }}</p>
+  <div class="dish-card__buttons">
+    <lib-card-btn
+      [action]="'update'"
+      [entityName]="'Plato'"
+      (click)="onUpdate()"
+    ></lib-card-btn>
+    <lib-card-btn
+      [action]="'delete'"
+      [entityName]="'Plato'"
+      (click)="onDelete()"
+    ></lib-card-btn>
+  </div>
+  <lib-modal
+    *ngIf="showModal"
+    [text]="'¿Estás seguro de que deseas eliminar este plato?'"
+    [actionText]="'Eliminar'"
+    (close)="onCloseModal()"
+    (action)="onConfirmDelete()"
+  ></lib-modal>
+</div>

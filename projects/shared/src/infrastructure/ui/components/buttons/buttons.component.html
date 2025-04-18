@@ -1,0 +1,13 @@
+<button [ngClass]="buttonClasses" [disabled]="disabled">
+  <ng-container *ngIf="(icon && type === 'icon') || type === 'circle'">
+    <span class="button__icon" [innerHTML]="icon"></span>
+  </ng-container>
+
+  <ng-container *ngIf="icon && type !== 'icon' && type !== 'circle'">
+    <span class="button__icon" [innerHTML]="icon"></span>
+  </ng-container>
+
+  <ng-container *ngIf="text && type !== 'icon' && type !== 'circle'">
+    <span class="button__text">{{ text }}</span>
+  </ng-container>
+</button>

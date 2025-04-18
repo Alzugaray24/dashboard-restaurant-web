@@ -1,0 +1,12 @@
+<div class="dish-page">
+  <div class="dish-page__create-btn">
+    <lib-card-btn
+      [action]="'create'"
+      [entityName]="'Nuevo Plato'"
+      (click)="onCreateDish()"
+    ></lib-card-btn>
+  </div>
+  <div class="dish-page__list">
+    <lib-dish-card *ngFor="let dish of dishes" [dish]="dish"></lib-dish-card>
+  </div>
+</div>

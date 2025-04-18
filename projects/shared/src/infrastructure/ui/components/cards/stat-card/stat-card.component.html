@@ -1,0 +1,23 @@
+<div class="stat-card">
+  <div class="stat-card__icon-container" [style.background-color]="iconBgColor">
+    <div class="stat-card__icon-wrapper">
+      <lib-icon [name]="icon" [color]="iconColor"></lib-icon>
+    </div>
+  </div>
+
+  <div class="stat-card__content">
+    <h3 class="stat-card__value">{{ value }}</h3>
+    <p class="stat-card__title">{{ title }}</p>
+
+    <div
+      *ngIf="trendValue"
+      class="stat-card__trend"
+      [ngClass]="{
+        'stat-card__trend--up': trendDirection === 'up',
+        'stat-card__trend--down': trendDirection === 'down'
+      }"
+    >
+      {{ trendValue }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="sidebar">
+  <!-- Cabecera del sidebar -->
+  <div class="sidebar__header">
+    <div class="sidebar__brand">
+      <h1 class="sidebar__title">{{ title }}</h1>
+      <p class="sidebar__subtitle">{{ subtitle }}</p>
+    </div>
+  </div>
+
+  <!-- Navegación -->
+  <nav class="sidebar__nav">
+    <ul class="sidebar__nav-list">
+      <li *ngFor="let item of navItems" class="sidebar__nav-item">
+        <a
+          [routerLink]="item.link"
+          routerLinkActive="sidebar__nav-link--active"
+          class="sidebar__nav-link"
+          [ngClass]="{ 'sidebar__nav-link--active': isActive(item) }"
+        >
+          <span class="sidebar__nav-icon">
+            <lib-icon
+              [name]="item.icon"
+              [color]="isActive(item) ? '#10B981' : 'currentColor'"
+            ></lib-icon>
+          </span>
+          <span class="sidebar__nav-label">{{ item.label }}</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Área de notificación (opcional) -->
+  <div class="sidebar__notification" *ngIf="notificationContent">
+    <div class="sidebar__notification-content">
+      <div
+        class="sidebar__notification-icon"
+        *ngIf="notificationContent.iconUrl"
+      >
+        <img [src]="notificationContent.iconUrl" alt="Notification icon" />
+      </div>
+      <div class="sidebar__notification-text">
+        <p class="sidebar__notification-title">
+          {{ notificationContent.title }}
+        </p>
+        <p class="sidebar__notification-subtitle">
+          {{ notificationContent.subtitle }}
+        </p>
+      </div>
+    </div>
+    <button class="sidebar__notification-button">
+      {{ notificationContent.buttonText }}
+    </button>
+  </div>
+
+  <!-- Footer del sidebar -->
+  <div class="sidebar__footer" *ngIf="footerContent">
+    <div class="sidebar__footer-content" [innerHTML]="footerContent"></div>
+  </div>
+</div>

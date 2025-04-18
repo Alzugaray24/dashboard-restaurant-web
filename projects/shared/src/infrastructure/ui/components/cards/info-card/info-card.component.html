@@ -1,0 +1,23 @@
+<div class="info-card" [style.background-color]="bgColor">
+  <div class="info-card__content">
+    <div class="info-card__icon" *ngIf="iconUrl">
+      <img [src]="iconUrl" alt="Info icon" class="info-card__icon-img" />
+    </div>
+    <div class="info-card__text">
+      <p class="info-card__title" [style.color]="textColor">{{ title }}</p>
+      <p class="info-card__subtitle" [style.color]="textColor">
+        {{ subtitle }}
+      </p>
+    </div>
+  </div>
+
+  <button
+    class="info-card__button"
+    [style.background-color]="buttonColor"
+    [style.color]="textColor"
+    [style.border-color]="textColor"
+    (click)="onButtonClick()"
+  >
+    {{ buttonText }}
+  </button>
+</div>

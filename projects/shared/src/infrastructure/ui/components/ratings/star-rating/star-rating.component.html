@@ -1,0 +1,45 @@
+<div
+  class="star-rating"
+  [class.star-rating--readonly]="readonly"
+  [class.star-rating--small]="size === 'small'"
+  [class.star-rating--medium]="size === 'medium'"
+  [class.star-rating--large]="size === 'large'"
+  (mouseleave)="resetHover()"
+>
+  <div class="star-rating__stars">
+    <span
+      *ngFor="let position of stars"
+      [ngClass]="getStarClasses(position)"
+      [attr.data-position]="position"
+      (mouseover)="hoverStar(position)"
+      (click)="handlePartialClick($event, position)"
+      [style.--star-fill-color]="color || null"
+      [style.--star-empty-color]="inactiveColor || null"
+    >
+      <!-- Star SVG for full/empty stars -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        class="star-rating__icon"
+      >
+        <path
+          d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+        />
+      </svg>
+
+      <!-- Half Star SVG for half stars -->
+      <svg
+        *ngIf="precision === 'half'"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        class="star-rating__icon star-rating__icon--half"
+      >
+        <path d="M12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27z" />
+      </svg>
+    </span>
+  </div>
+
+  <div *ngIf="showValue" class="star-rating__value">
+    {{ formatRating(rating) }}
+  </div>
+</div>

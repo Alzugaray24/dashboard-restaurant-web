@@ -1,0 +1,50 @@
+<div class="section-header">
+  <div class="section-header__main">
+    <div class="section-header__title-container">
+      <h2 class="section-header__title">
+        {{ title }}
+        <span *ngIf="loading" class="section-header__loading-indicator"></span>
+      </h2>
+      <p *ngIf="subtitle" class="section-header__subtitle">{{ subtitle }}</p>
+    </div>
+
+    <!-- Header actions slot (buttons, etc.) -->
+    <div
+      *ngIf="showActions && headerActionsTemplate"
+      class="section-header__actions"
+    >
+      <ng-container [ngTemplateOutlet]="headerActionsTemplate"></ng-container>
+    </div>
+  </div>
+
+  <!-- Filters bar -->
+  <div
+    *ngIf="showFilters && filters.length > 0"
+    class="section-header__filters"
+  >
+    <ul class="section-header__filter-list">
+      <li
+        *ngFor="let filter of filters"
+        [class.section-header__filter--active]="filter.active"
+        class="section-header__filter"
+        (click)="selectFilter(filter)"
+      >
+        <i
+          *ngIf="filter.icon"
+          class="section-header__filter-icon {{ filter.icon }}"
+        ></i>
+        <span class="section-header__filter-label">{{ filter.label }}</span>
+        <span
+          *ngIf="filter.count !== undefined"
+          class="section-header__filter-count"
+          >{{ filter.count }}</span
+        >
+      </li>
+    </ul>
+  </div>
+
+  <!-- Optional content below the header -->
+  <div *ngIf="headerContentTemplate" class="section-header__content">
+    <ng-container [ngTemplateOutlet]="headerContentTemplate"></ng-container>
+  </div>
+</div>

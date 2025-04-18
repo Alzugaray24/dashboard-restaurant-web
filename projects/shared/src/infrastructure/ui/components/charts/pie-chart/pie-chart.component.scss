@@ -1,0 +1,90 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins";
+
+.pie-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: $spacing-small;
+    color: $text-dark;
+  }
+
+  &__svg-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__segment {
+    transition: transform 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.02) translateY(-2px);
+      filter: brightness(1.05);
+    }
+  }
+
+  &__label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    fill: $text-dark;
+    pointer-events: none;
+  }
+
+  &__value {
+    font-size: 0.7rem;
+    font-weight: 600;
+    fill: $text-dark;
+  }
+
+  &__donut-hole {
+    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.1));
+  }
+
+  &__center-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    fill: $text-dark;
+  }
+
+  &__legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: $spacing-medium;
+    gap: $spacing-small;
+    width: 100%;
+  }
+
+  &__legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: $spacing-medium;
+  }
+
+  &__legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    margin-right: $spacing-small;
+  }
+
+  &__legend-label {
+    font-size: 0.75rem;
+    color: $text-dark;
+    margin-right: $spacing-small;
+  }
+
+  &__legend-value {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: $text-dark;
+  }
+}

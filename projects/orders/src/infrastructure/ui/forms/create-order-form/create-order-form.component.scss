@@ -1,0 +1,30 @@
+@use "../../../../../../shared/src/infrastructure/ui/styles/variables" as *;
+@use "../../../../../../shared/src/infrastructure/ui/styles/mixins";
+
+.order-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-large;
+  padding: $spacing-large;
+  background-color: $background-color;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  @include mixins.box-shadow(0px, 4px, 8px, rgba(0, 0, 0, 0.1));
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-small;
+
+    &__label {
+      @include mixins.text-style($font-size-base, bold, $text-color);
+    }
+
+    &__input {
+      padding: $spacing-small;
+      border: 1px solid $border-color;
+      border-radius: 4px;
+      font-size: $font-size-base;
+    }
+  }
+}

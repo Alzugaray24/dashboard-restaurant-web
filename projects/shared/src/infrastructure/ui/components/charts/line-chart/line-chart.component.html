@@ -1,0 +1,92 @@
+<div class="line-chart">
+  <h3 *ngIf="title" class="line-chart__title">{{ title }}</h3>
+
+  <div
+    class="line-chart__svg-container"
+    [style.width.px]="width"
+    [style.height.px]="height"
+  >
+    <svg [attr.width]="width" [attr.height]="height" [attr.viewBox]="viewBox">
+      <!-- Líneas de la grilla -->
+      <g *ngIf="showGrid" class="line-chart__grid">
+        <line
+          *ngFor="let line of gridLines.x"
+          [attr.x1]="line[0]"
+          [attr.y1]="line[1]"
+          [attr.x2]="line[2]"
+          [attr.y2]="line[3]"
+          class="line-chart__grid-line line-chart__grid-line--x"
+        ></line>
+        <line
+          *ngFor="let line of gridLines.y"
+          [attr.x1]="line[0]"
+          [attr.y1]="line[1]"
+          [attr.x2]="line[2]"
+          [attr.y2]="line[3]"
+          class="line-chart__grid-line line-chart__grid-line--y"
+        ></line>
+      </g>
+
+      <!-- Líneas del gráfico -->
+      <g class="line-chart__series">
+        <path
+          *ngFor="let line of linePaths"
+          [attr.d]="line.path"
+          [attr.stroke]="line.color"
+          class="line-chart__line"
+        ></path>
+      </g>
+
+      <!-- Puntos de datos -->
+      <g *ngIf="showPoints" class="line-chart__points">
+        <circle
+          *ngFor="let point of dataPoints"
+          [attr.cx]="point.x"
+          [attr.cy]="point.y"
+          [attr.r]="4"
+          [attr.stroke]="point.color"
+          class="line-chart__point"
+        >
+          <title>{{ point.name }}: {{ formatValue(point.value) }}</title>
+        </circle>
+      </g>
+
+      <!-- Etiquetas de los ejes -->
+      <g *ngIf="showLabels" class="line-chart__labels">
+        <!-- Etiquetas eje X -->
+        <text
+          *ngFor="let line of gridLines.x; let i = index"
+          [attr.x]="line[0]"
+          [attr.y]="height - padding / 2"
+          text-anchor="middle"
+          class="line-chart__axis-label"
+        >
+          {{ xAxisLabels[i] || formatValue(xScale.min + i * xScale.step) }}
+        </text>
+
+        <!-- Etiquetas eje Y -->
+        <text
+          *ngFor="let line of gridLines.y; let i = index"
+          [attr.x]="padding / 2"
+          [attr.y]="line[1]"
+          text-anchor="middle"
+          alignment-baseline="middle"
+          class="line-chart__axis-label"
+        >
+          {{ yAxisLabels[i] || formatValue(yScale.min + i * yScale.step) }}
+        </text>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Leyenda -->
+  <div class="line-chart__legend">
+    <div *ngFor="let line of linePaths" class="line-chart__legend-item">
+      <div
+        class="line-chart__legend-color"
+        [style.background-color]="line.color"
+      ></div>
+      <div class="line-chart__legend-label">{{ line.name }}</div>
+    </div>
+  </div>
+</div>
