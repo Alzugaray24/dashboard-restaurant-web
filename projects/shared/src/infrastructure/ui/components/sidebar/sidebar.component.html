@@ -20,7 +20,8 @@
           <span class="sidebar__nav-icon">
             <lib-icon
               [name]="item.icon"
-              [color]="isActive(item) ? '#10B981' : 'currentColor'"
+              [color]="isActive(item) ? '#10B981' : '#4b5563'"
+              [size]="'small'"
             ></lib-icon>
           </span>
           <span class="sidebar__nav-label">{{ item.label }}</span>
@@ -32,20 +33,12 @@
   <!-- Área de notificación (opcional) -->
   <div class="sidebar__notification" *ngIf="notificationContent">
     <div class="sidebar__notification-content">
-      <div
-        class="sidebar__notification-icon"
-        *ngIf="notificationContent.iconUrl"
-      >
-        <img [src]="notificationContent.iconUrl" alt="Notification icon" />
-      </div>
-      <div class="sidebar__notification-text">
-        <p class="sidebar__notification-title">
-          {{ notificationContent.title }}
-        </p>
-        <p class="sidebar__notification-subtitle">
-          {{ notificationContent.subtitle }}
-        </p>
-      </div>
+      <p class="sidebar__notification-title">
+        {{ notificationContent.title }}
+      </p>
+      <p class="sidebar__notification-subtitle">
+        {{ notificationContent.subtitle }}
+      </p>
     </div>
     <button class="sidebar__notification-button">
       {{ notificationContent.buttonText }}

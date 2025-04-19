@@ -5,39 +5,38 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  width: 100%;
   height: 100%;
   background-color: white;
-  padding: $spacing-large;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  border-right: 1px solid $border-color;
+  overflow-y: auto;
+  padding: 20px 16px;
 
-  // Estructura del Sidebar
   &__header {
-    margin-bottom: $spacing-large * 1.5;
+    padding-bottom: $spacing-md;
   }
 
   &__brand {
-    display: flex;
-    flex-direction: column;
+    margin-bottom: $spacing-md;
   }
 
   &__title {
     font-size: 1.5rem;
-    font-weight: bold;
+    font-weight: 600;
     margin: 0;
     color: $text-dark;
   }
 
   &__subtitle {
-    font-size: 0.8rem;
-    color: $text-color;
+    font-size: 0.875rem;
+    color: $text-color-secondary;
     margin: 0;
     opacity: 0.7;
   }
 
   &__nav {
     flex: 1;
-    margin-bottom: $spacing-large;
+    margin-bottom: $spacing-lg;
+    margin-top: $spacing-md;
   }
 
   &__nav-list {
@@ -46,7 +45,7 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: $spacing-medium;
+    gap: 8px;
   }
 
   &__nav-item {
@@ -56,20 +55,22 @@
   &__nav-link {
     display: flex;
     align-items: center;
-    gap: $spacing-small;
-    padding: $spacing-small $spacing-medium;
+    gap: 12px;
+    padding: 10px 12px;
     border-radius: 8px;
     text-decoration: none;
-    color: $text-color;
+    color: $text-color-secondary;
     transition: all 0.2s ease;
+    font-weight: 500;
+    font-size: 0.875rem;
 
     &:hover {
-      background-color: color.adjust($background-color, $lightness: -2%);
+      background-color: rgba($success-color, 0.05);
     }
 
     &--active {
-      background-color: color.adjust(#10b981, $alpha: -0.9);
-      color: #10b981;
+      background-color: rgba($success-color, 0.1);
+      color: $success-color;
       font-weight: 500;
     }
   }
@@ -81,80 +82,75 @@
   }
 
   &__nav-label {
-    font-size: 0.9rem;
+    font-size: 0.875rem;
   }
 
   // Notificación
   &__notification {
-    background-color: color.adjust(#10b981, $alpha: -0.9);
+    background-color: rgba($success-color, 0.1);
     border-radius: 8px;
-    padding: $spacing-medium;
-    margin-bottom: $spacing-large;
+    padding: $spacing-md;
+    margin: $spacing-md 0;
   }
 
   &__notification-content {
     display: flex;
-    align-items: flex-start;
-    gap: $spacing-small;
-    margin-bottom: $spacing-small;
-  }
-
-  &__notification-icon {
-    background-color: white;
-    border-radius: 8px;
-    padding: $spacing-small;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: $spacing-sm;
   }
 
   &__notification-text {
     flex: 1;
   }
 
-  &__notification-title,
-  &__notification-subtitle {
+  &__notification-title {
     margin: 0;
-    font-size: 0.8rem;
-    color: #10b981;
+    font-size: 0.75rem;
+    color: $success-color;
   }
 
   &__notification-subtitle {
+    margin: 0;
+    font-size: 0.75rem;
+    color: $success-color;
     font-weight: 600;
   }
 
   &__notification-button {
     width: 100%;
     background-color: white;
-    color: #10b981;
-    border: 1px solid color.adjust(#10b981, $lightness: 30%);
+    color: $success-color;
+    border: 1px solid rgba($success-color, 0.3);
     border-radius: 8px;
-    padding: $spacing-small 0;
-    font-size: 0.8rem;
+    padding: 8px 0;
+    font-size: 0.75rem;
     cursor: pointer;
     transition: all 0.2s ease;
+    font-weight: 500;
 
     &:hover {
-      background-color: color.adjust(white, $lightness: -2%);
+      background-color: rgba($success-color, 0.05);
     }
   }
 
   // Footer
   &__footer {
     font-size: 0.75rem;
-    color: $text-color;
+    color: $text-color-secondary;
     opacity: 0.7;
+    padding-top: $spacing-md;
+    border-top: 1px solid rgba($border-color, 0.3);
+    margin-top: auto;
   }
 
   &__footer-content {
-    line-height: 1.5;
+    line-height: 1.4;
+
+    p {
+      margin: 0;
+      padding: 1px 0;
+      font-size: 0.7rem;
+    }
   }
 }

@@ -8,6 +8,7 @@ $secondary-dark: #047857;
 $warning-color: #f59e0b; // Amber for warnings/caution
 $danger-color: #ef4444; // Red for errors/danger
 $info-color: #6366f1; // Indigo for information
+$success-color: #10b981; // Green for success alerts/notifications
 
 // Neutral Colors
 $text-color-primary: #111827; // Very dark gray for primary text
@@ -28,6 +29,17 @@ $spacing-xl: 32px;
 $spacing-2xl: 48px;
 $spacing-3xl: 64px;
 
+// Alias para compatibilidad con el código existente
+$spacing-small: $spacing-sm;
+$spacing-medium: $spacing-md;
+$spacing-large: $spacing-lg;
+
+// Texto para compatibilidad
+$text-dark: $text-color-primary;
+$text-light: $bg-color-primary;
+$background-color: $bg-color-secondary;
+$card-border: $border-color;
+
 // Breakpoints (in pixels)
 $breakpoint-xs: 480px;
 $breakpoint-sm: 640px;
@@ -46,6 +58,7 @@ $font-family-base: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
   Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 $font-family-heading: $font-family-base;
 $font-family-monospace: "Fira Code", "Courier New", monospace;
+$font-secondary: $font-family-base;
 
 $font-size-xs: 0.75rem; // 12px
 $font-size-sm: 0.875rem; // 14px
@@ -80,6 +93,9 @@ $shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
   0 4px 6px -2px rgba(0, 0, 0, 0.05);
 $shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
   0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+// Alias adicionales para compatibilidad
+$card-shadow: $shadow-sm;
 
 // Z-index values
 $z-index-dropdown: 1000;
