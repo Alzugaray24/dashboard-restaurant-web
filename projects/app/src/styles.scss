@@ -1,12 +1,12 @@
 // Importar variables y mixins
 @use "../../shared/src/infrastructure/ui/styles/variables.scss" as *;
-@use "../../shared/src/infrastructure/ui/styles/mixins.scss" as *;
+@use "../../shared/src/infrastructure/ui/styles/mixins.scss";
 
 // Estilos globales
 body {
-  background-color: $background-color;
-  color: $text-color;
-  font-family: $font-primary;
+  background-color: $bg-color-secondary;
+  color: $text-color-primary;
+  font-family: $font-family-base;
   margin: 0;
   padding: 0;
   line-height: 1.6;
@@ -18,18 +18,18 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $font-secondary;
+  font-family: $font-family-heading;
   color: $primary-color;
-  margin: $spacing-medium 0;
+  margin: $spacing-md 0;
 }
 
 p {
-  margin: $spacing-small 0;
+  margin: $spacing-sm 0;
   font-size: $font-size-base;
 }
 
 a {
-  color: $accent-color;
+  color: $primary-light;
   text-decoration: none;
   transition: color 0.3s ease-in-out;
 
@@ -39,14 +39,17 @@ a {
 }
 
 button {
-  @include button($button-primary, $text-light);
+  @include mixins.button-base;
+  background-color: $primary-color;
+  color: white;
 
   &:hover {
     background-color: $secondary-color;
   }
 
   &:disabled {
-    background-color: $button-disabled;
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 }
 
@@ -54,7 +57,7 @@ button {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 $spacing-medium;
+  padding: 0 $spacing-md;
 }
 
 .text-center {
@@ -62,47 +65,47 @@ button {
 }
 
 .mt-small {
-  margin-top: $spacing-small;
+  margin-top: $spacing-sm;
 }
 
 .mt-medium {
-  margin-top: $spacing-medium;
+  margin-top: $spacing-md;
 }
 
 .mt-large {
-  margin-top: $spacing-large;
+  margin-top: $spacing-lg;
 }
 
 .mb-small {
-  margin-bottom: $spacing-small;
+  margin-bottom: $spacing-sm;
 }
 
 .mb-medium {
-  margin-bottom: $spacing-medium;
+  margin-bottom: $spacing-md;
 }
 
 .mb-large {
-  margin-bottom: $spacing-large;
+  margin-bottom: $spacing-lg;
 }
 
 // Estilos responsivos
-@include media($breakpoint-mobile) {
+@media (max-width: 768px) {
   body {
     font-size: 14px;
   }
 
   .container {
-    padding: 0 $spacing-small;
+    padding: 0 $spacing-sm;
   }
 }
 
-@include media($breakpoint-tablet) {
+@media (min-width: 768px) and (max-width: 1024px) {
   body {
     font-size: 15px;
   }
 }
 
-@include media($breakpoint-desktop) {
+@media (min-width: 1024px) {
   body {
     font-size: 16px;
   }
